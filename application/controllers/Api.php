@@ -29,6 +29,7 @@ class Api extends CI_Controller {
 	}
 	public function GenId($tbl, $code)
 	{
+		/*
 		$query = "SELECT Id FROM ".$tbl." ORDER BY CreateDate DESC LIMIT 1";
 		$resCheck = $this->db->query($query)->row();
 		if(empty($resCheck))
@@ -41,6 +42,10 @@ class Api extends CI_Controller {
 			$toInt = (int)$getInt + 1;
 			return $code . "-". sprintf('%04d', $toInt);
 		}
+		*/
+		$query = "SELECT CONCAT(UPPER('".$code."-'), UPPER(MD5(CONVERT(NOW(), VARCHAR(255))))) Id";
+		$resCheck = $this->db->query($query)->row();
+		return $resCheck->Id;
 	}
 	public function selectDb()
 	{
@@ -158,7 +163,9 @@ class Api extends CI_Controller {
 	}
 	public function getProduct()
 	{
-		$query = "SELECT s.Id, s.NamaSupplier, mp.NameProduct, mp.Harga, mp.Id AS ProdId, mp.Stok, mp.Satuan
+		$query = "SELECT mp.Id, s.NamaSupplier, mp.NameProduct, 
+					mp.Harga, mp.Id AS ProdId, mp.Stok, mp.Satuan,
+					mp.Harga
 					FROM mastersupplier AS s 
 					LEFT JOIN masterproduct AS mp ON mp.Supplier = s.Id
 					WHERE s.Aktif = '1'";
@@ -174,5 +181,42 @@ class Api extends CI_Controller {
 					LEFT JOIN mastersupplier AS ms ON ms.Id = rp.SupplierId";
 		$resQuery = $this->db->query($query)->result();
 		echo json_encode($resQuery);
+	}
+	public function getStatusOrder()
+	{
+		$staff = $this->input->post("staff");
+		$query = "SELECT mp.NameProduct, mp.Satuan, so.* FROM detailso AS so
+					LEFT JOIN masterproduct AS mp ON mp.Id = so.IdProduct
+					WHERE so.CreateBy = '".$staff."' AND IFNULL(so.StatusBatal,'') = '' AND IFNULL(so.IdSo, '') = ''";
+		$resQuery = $this->db->query($query)->result();
+		echo json_encode($resQuery);
+	}
+	public function updateStatusOrder()
+	{
+		$data["json"] = $this->input->post("dataUpdate");
+		$data["custId"] = $this->input->post("dataCustomer");
+		$dataArray = json_decode($data["json"]);
+		$query = "UPDATE detailso s JOIN ( ";
+		foreach($dataArray as $so)
+		{
+			$query .= " SELECT '".$so->Id."' as Id, 'testIDSO' as IdSo, '".$so->Jml."' as Jml, 
+						'".$so->StatusBatal."' as StatusBatal ";
+			if($so->StatusBatal == '1')
+			{
+				$query .= " , NOW() as BatalDate UNION ALL ";
+			}
+			else
+			{
+				$query .= " , NULL as BatalDate UNION ALL ";
+			}
+		}
+		$query = substr($query, 0, -10);
+		$query .= " ) vals ON s.Id = vals.Id
+					SET s.IdSo = vals.IdSo, s.Jml = vals.Jml, S.StatusBatal = vals.StatusBatal, s.BatalDate = vals.BatalDate ";
+		
+		$resQuery = $this->db->query($query);
+		if($resQuery) { echo "Success"; }
+		else { echo "Failed"; }
+		
 	}
 }

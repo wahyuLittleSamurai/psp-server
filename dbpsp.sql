@@ -3,15 +3,15 @@
 
  Source Server         : local
  Source Server Type    : MySQL
- Source Server Version : 100129 (10.1.29-MariaDB)
+ Source Server Version : 100424
  Source Host           : localhost:3306
  Source Schema         : dbpsp
 
  Target Server Type    : MySQL
- Target Server Version : 100129 (10.1.29-MariaDB)
+ Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 04/10/2022 07:04:24
+ Date: 05/10/2022 16:26:10
 */
 
 SET NAMES utf8mb4;
@@ -30,15 +30,17 @@ CREATE TABLE `detailso`  (
   `Disc` int NULL DEFAULT NULL,
   `SubTotal` int NULL DEFAULT NULL,
   `CreateBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `StatusBatal` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `BatalDate` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of detailso
 -- ----------------------------
+INSERT INTO `detailso` VALUES ('DSO-1FACAF77DEC0FD34081E56FBBCDD7BDF', NULL, 'prod-0002', 1, 100000, 0, 100000, 'emp-0004', '2022-10-05 15:56:18', NULL, NULL);
+INSERT INTO `detailso` VALUES ('DSO-891246D2EE3871EAAD40340A63C8C197', NULL, 'prod-0001', 2, 100000, 10000, 190000, 'emp-0004', '2022-10-05 16:20:00', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for masteremploye
@@ -55,11 +57,11 @@ CREATE TABLE `masteremploye`  (
   `Aktif` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Device` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `IdDevice` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `Gender` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Jabatan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of masteremploye
@@ -75,9 +77,9 @@ DROP TABLE IF EXISTS `masterjabatan`;
 CREATE TABLE `masterjabatan`  (
   `Id` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `Nama` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of masterjabatan
@@ -97,9 +99,9 @@ CREATE TABLE `masterpelanggan`  (
   `Phone` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Aktif` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of masterpelanggan
@@ -117,10 +119,10 @@ CREATE TABLE `masterproduct`  (
   `Satuan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Harga` decimal(65, 0) NULL DEFAULT NULL,
   `CreateBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `Stok` int NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of masterproduct
@@ -137,10 +139,10 @@ CREATE TABLE `mastersidebar`  (
   `Menu` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Access` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `Icon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `Link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of mastersidebar
@@ -151,6 +153,7 @@ INSERT INTO `mastersidebar` VALUES ('3', 'Master Supplier & Product', 'ALL', 'md
 INSERT INTO `mastersidebar` VALUES ('4', 'Master Kendaraan', 'ALL', 'mdi-gauge', '2022-09-27 14:48:20', 'MasterVehicle');
 INSERT INTO `mastersidebar` VALUES ('5', 'Stok', 'ALL', 'mdi-gauge', '2022-09-27 15:12:06', 'DataStok');
 INSERT INTO `mastersidebar` VALUES ('6', 'Sales Order', 'ALL', 'mdi-gauge', '2022-09-30 20:04:06', 'SalesOrder');
+INSERT INTO `mastersidebar` VALUES ('7', 'Status Order', 'ALL', 'mdi-gauge', '2022-10-05 15:24:30', 'StatusOrder');
 
 -- ----------------------------
 -- Table structure for masterso
@@ -160,7 +163,7 @@ CREATE TABLE `masterso`  (
   `Id` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `IdPelanggan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `IdStaff` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `StatusBatal` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `KeteranganBatal` varchar(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ApproveBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -168,7 +171,7 @@ CREATE TABLE `masterso`  (
   `JanjiBayar` date NULL DEFAULT NULL,
   `Invoice` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of masterso
@@ -185,10 +188,10 @@ CREATE TABLE `mastersupplier`  (
   `Email` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Alamat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `CreateBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `Aktif` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of mastersupplier
@@ -206,9 +209,9 @@ CREATE TABLE `mastervehicle`  (
   `Jenis` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Aktif` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `CreateBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of mastervehicle
@@ -227,13 +230,13 @@ CREATE TABLE `reportproduct`  (
   `Harga` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `TotalHarga` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `CreateBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` timestamp NULL DEFAULT current_timestamp,
   `ApproveBy` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ApproveDate` timestamp NULL DEFAULT NULL,
   `Keterangan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `SupplierId` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of reportproduct
