@@ -1,0 +1,8 @@
+[18-Nov-2022 03:40:06 UTC] PHP Parse error:  syntax error, unexpected 'words' (T_STRING) in /home/putrasur/pspapi.putrasuryaperdana.co.id/application/config/config.php on line 178
+[18-Nov-2022 03:40:06 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[18-Nov-2022 03:40:14 UTC] PHP Parse error:  syntax error, unexpected 'words' (T_STRING) in /home/putrasur/pspapi.putrasuryaperdana.co.id/application/config/config.php on line 178
+[18-Nov-2022 03:40:14 UTC] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
+[30-Jul-2023 03:59:21 UTC] PHP Fatal error:  Cannot redeclare Api::EditInvoice() in /home/putrasur/pspapi.putrasuryaperdana.co.id/application/controllers/Api.php on line 1213
+[30-Jul-2023 03:59:29 UTC] PHP Fatal error:  Cannot redeclare Api::EditInvoice() in /home/putrasur/pspapi.putrasuryaperdana.co.id/application/controllers/Api.php on line 1213
+[30-Jul-2023 03:59:33 UTC] PHP Fatal error:  Cannot redeclare Api::EditInvoice() in /home/putrasur/pspapi.putrasuryaperdana.co.id/application/controllers/Api.php on line 1213
+[30-Jul-2023 04:48:48 UTC] PHP Deprecated:  The behavior of unparenthesized expressions containing both '.' and '+'/'-' will change in PHP 8: '+'/'-' will take a higher precedence in /home/putrasur/pspapi.putrasuryaperdana.co.id/application/controllers/Api.php on line 1233
